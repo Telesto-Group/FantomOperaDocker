@@ -2,12 +2,12 @@ kind: pipeline
 type: docker
 name: default
 
-steps:
-  publish:
-    image: plugins/docker
-    username: mhetzel 
-    password: 
-      from_secret: DOCKER_PASSWORD
-    registry: registry.hub.docker.com
-    repo: registry.hub.docker.com/mhetzel/fantomopera
-    tag: latest
+
+publish:
+  image: plugins/docker
+  username: mhetzel 
+  password: 
+    from_secret: DOCKER_PASSWORD
+  registry: registry.hub.docker.com
+  repo: registry.hub.docker.com/mhetzel/fantomopera
+  tag: latest
