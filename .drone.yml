@@ -3,12 +3,12 @@ name: default
 
 steps:
 - name: lint
-  image: hadolint/hadolint
+  image: hadolint/hadolint:v2.8.0-debian
   commands:
   - hadolint - < Dockerfile
 
 - name: publish
-  image: plugins/docker
+  image: plugins/docker:20:10
   settings:
     username: mhetzel 
     password: 
