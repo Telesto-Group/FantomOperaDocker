@@ -1,6 +1,6 @@
 FROM ubuntu:20.04 as build-stage
 
-RUN apt-get update && apt-get upgrade -y && apt-get install -y \
+RUN apt-get update && apt-get upgrade -y && apt-get install -y --no-install-recommends \
   build-essential \
   git \
   wget \
