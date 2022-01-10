@@ -18,7 +18,7 @@ ENV GOPATH=/root/go
 ENV PATH=$PATH:$GOPATH/go/bin:$GOROOT/bin
 
 # build opera
-WORKDIR go-opera
+WORKDIR /go-opera
 RUN git clone https://github.com/Fantom-foundation/go-opera.git go-opera \
     && git checkout release/1.0.2-rc.5 \
     && make
