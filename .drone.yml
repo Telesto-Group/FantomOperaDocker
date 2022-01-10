@@ -10,4 +10,9 @@ steps:
       from_secret: DOCKER_PASSWORD
     registry: registry.hub.docker.com
     repo: registry.hub.docker.com/mhetzel/fantomopera
-    tag: latest
+    tags: 
+    - latest
+    - ${DRONE_TAG}
+  when:
+    event:
+    - tag
