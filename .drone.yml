@@ -8,7 +8,7 @@ steps:
   - hadolint - < Dockerfile
 
 - name: publish
-  image: plugins/docker:20:10
+  image: plugins/docker:20.10
   settings:
     username: mhetzel 
     password: 
