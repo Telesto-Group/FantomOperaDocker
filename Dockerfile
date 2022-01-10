@@ -21,7 +21,8 @@ ENV PATH=$PATH:$GOPATH/go/bin:$GOROOT/bin
 
 WORKDIR /go-opera
 RUN git checkout release/1.0.2-rc.5 && make
-    
+
+WORKDIR /root
 RUN wget --quiet https://opera.fantom.network/mainnet.g
 
 FROM ubuntu:20.04 as opera
@@ -36,7 +37,7 @@ ENV GOPATH=/root/go
 ENV PATH=$PATH:$GOPATH/go/bin:$GOROOT/bin
 
 WORKDIR /root
- 
+
 EXPOSE 5050 18545
  
 VOLUME [ "/root/.opera" ]
