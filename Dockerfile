@@ -1,29 +1,28 @@
 FROM ubuntu:20.04 as build-stage
 
 RUN apt-get update && apt-get upgrade -y && apt-get install -y --no-install-recommends \
-  build-essential \
-  git \
-  wget \
-  tar \
+  build-essential=12.8ubuntu1.1 \
+  git=1:2.25.1-1ubuntu3.2 \
+  wget=1.20.3-1ubuntu2 \
+  tar=1.30+dfsg-7ubuntu0.20.04.1 \
+  ca-certificates=20210119~20.04.2 \
   && rm -rf /var/lib/apt/lists/* \
   && apt-get clean
 
-# install go
-RUN wget -q https://dl.google.com/go/go1.15.10.linux-amd64.tar.gz \
+# install go && build opera
+RUN wget --quiet https://dl.google.com/go/go1.15.10.linux-amd64.tar.gz \
   && tar -xf go1.15.10.linux-amd64.tar.gz -C /usr/local \
-  && rm go1.15.10.linux-amd64.tar.gz
+  && rm go1.15.10.linux-amd64.tar.gz \
+  && git clone https://github.com/Fantom-foundation/go-opera.git /go-opera
 
 ENV GOROOT=/usr/local/go 
 ENV GOPATH=/root/go
 ENV PATH=$PATH:$GOPATH/go/bin:$GOROOT/bin
 
-# build opera
 WORKDIR /go-opera
-RUN git clone https://github.com/Fantom-foundation/go-opera.git go-opera \
-    && git checkout release/1.0.2-rc.5 \
-    && make
+RUN git checkout release/1.0.2-rc.5 && make
     
-RUN wget -q https://opera.fantom.network/mainnet.g
+RUN wget --quiet https://opera.fantom.network/mainnet.g
 
 FROM ubuntu:20.04 as opera
 
