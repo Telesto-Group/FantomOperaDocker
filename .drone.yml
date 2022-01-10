@@ -1,9 +1,8 @@
 kind: pipeline
-type: docker
 name: default
 
-
-publish:
+steps:
+- name: docker
   image: plugins/docker
   username: mhetzel 
   password: 
