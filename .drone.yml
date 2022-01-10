@@ -15,9 +15,9 @@ steps:
     tags: 
     - latest
     dry_run: True
- when:
-   event:
-   - pull_request
+  when:
+    event:
+    - pull_request
     
 - name: lint
   image: hadolint/hadolint:v2.8.0-debian
