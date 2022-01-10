@@ -22,7 +22,7 @@ ARG OPERA_VERSION
 WORKDIR /go-opera
 RUN git checkout release/${OPERA_VERSION} && make
 
-WORKDIR /root  
+WORKDIR /
 RUN wget --quiet https://opera.fantom.network/mainnet.g
 
 FROM ubuntu:20.04 as opera
