@@ -2,6 +2,23 @@ kind: pipeline
 name: default
 
 steps:
+
+- name: build
+  image: plugins/docker:20.10
+  settings:
+    cache_from: registry.hub.docker.com/mhetzel/fantomopera:latest
+    username: mhetzel 
+    password: 
+      from_secret: DOCKER_PASSWORD
+    registry: registry.hub.docker.com
+    repo: registry.hub.docker.com/mhetzel/fantomopera
+    tags: 
+    - latest
+    dry_run: True
+ # when:
+ #   event:
+ #   - pull_request
+    
 - name: lint
   image: hadolint/hadolint:v2.8.0-debian
   commands:
@@ -10,6 +27,7 @@ steps:
 - name: publish
   image: plugins/docker:20.10
   settings:
+    cache_from: registry.hub.docker.com/mhetzel/fantomopera:latest
     username: mhetzel 
     password: 
       from_secret: DOCKER_PASSWORD
