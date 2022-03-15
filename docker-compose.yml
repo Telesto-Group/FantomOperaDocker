@@ -1,0 +1,18 @@
+version: "3.8"
+
+services:
+  validator:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: always
+    ports:
+      - '5050:5050'
+      - '5050:5050/udp'
+      - '18545:18545'
+    volumes:
+      - opera:/root/.opera
+    command: "opera --genesis mainnet.g"
+
+volumes:
+  opera: {}
